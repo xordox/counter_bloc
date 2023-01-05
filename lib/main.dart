@@ -43,7 +43,24 @@ class MyHomePage extends StatelessWidget {
             const Text(
               'You have pushed the button this many times:',
             ),
-            BlocBuilder<CounterBloc, CounterState>(
+            BlocConsumer<CounterBloc, CounterState>(
+              listener: (context, state) {
+                if (state is IncrementState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text("Incremented"),
+                      duration: Duration(milliseconds: 300),
+                    ),
+                  );
+                } else if (state is DecrementState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text("Decremented"),
+                      duration: Duration(milliseconds: 300),
+                    ),
+                  );
+                }
+              },
               builder: (context, state) {
                 return Text(
                   '${state.counterValue}',
