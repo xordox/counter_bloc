@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'bloc/counter/counter_barrel.dart';
 
 void main() {
+  Bloc.observer = CounterBlocObserver();
   runApp(const MyApp());
 }
 
